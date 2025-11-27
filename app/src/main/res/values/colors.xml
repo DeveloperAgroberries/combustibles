@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#7BB328</color>
+    <color name="secondary">#081165</color>
+    <color name="gray">#D3D3D3</color>
+    <color name="transparent">#00FFFFFF</color>
+
+
+    //Login
+    <color name="black_alpha">#98000000</color>
+
+    //About
+    <color name="link_color">#7EAAFF</color>
+    
+    //Menu Item Selector
+    <color name="colorSelected">#667BB328</color>
+
+    //Colores para subir fotos
+    <color name="fuel_button_green">#4CAF50</color>
+    <color name="fuel_button_red">#F44336</color>
+    <color name="fuel_button_text_color">#FFFFFF</color>
+
+    <color name="photo_button_green">#4CAF50</color>
+    <color name="photo_button_red">#F44336</color>
+    <color name="photo_button_text_color">#FFFFFF</color>
+
+    <color name="photo_button_disabled_grey">#B0BEC5</color>
+    <color name="gray_button_disabled">#B0BEC5</color>
+</resources>

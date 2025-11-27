@@ -1,0 +1,124 @@
+<resources>
+    <string name="app_name">Combustibles Agroberries</string>
+
+    //Privacy Policies
+    <string name="confirm_policy_privacy">Aceptar</string>
+    <string name="location_and_other_policy_activity">Sobre tu ubicación y otros permisos</string>
+    <string name="like_describe_policy_activity">Como se describe en nuestra</string>
+    <string name="privacy_policy_activity">Politica de Privacidad.</string>
+    <string name="description_policy_activity">Si otorgas los permisos solicitados por nuestra aplicación (Combustibles Agroberries) a mostrarse a continuación, usamos la ubicación de tu dispositivo como dato recopilatorio, la cual forma parte de la información necesaria para realizar las capturas de nuestra app (Combustibles Agroberries) para muestra y uso de los mismos.</string>
+    <string name="description2_policy_activity">Tambien podemos usar y compartir esta información con socios confiables para brindarte nuestros servicios y mejorarlos.</string>
+    <string name="description3_policy_activity">Independientemente de que permitas o no el acceso a tu ubicación, puedes continuar utilizando nuestra app (Combustibles Agroberries) de manera limitada.
+                                         Tenga en cuenta que denegar el acceso a la ubicación de su dispositivo cuando se le solicite no impide el acceso a la información de ubicación general incrustada en su dirección IP.
+                                         Puedes cambiar los permisos otorgados en esta aplicación en cualquier momento.</string>
+    <string name="rights_policy_activity">Todos los derechos reservados © Agroberries México 2024-2030</string>
+
+    //Main Graph
+    <string name="graph_splash_activity">Splash Screen</string>
+    <string name="graph_fuel_fragment">Registro de combustible</string>
+    <string name="list_of_records_fragment">Lista de Registros</string>
+    <string name="graph_sync_fragment">Sincronizacion</string>
+    <string name="assets_fragment">Activos Fijos</string>
+    <string name="graph_about_fragment">Acerca De...</string>
+
+    //Login View
+    <string name="app_name_login">Combustibles</string>
+    <string name="use_login">Ingrese para realizar el registro de su consumo de combustibles</string>
+    <string name="username_login">Usuario</string>
+    <string name="password_login">Contraseña</string>
+    <string name="login_button_login">Ingresar</string>
+    <string name="design_login">Agroberries Mexico ® 2025-2030</string>
+    <string name="remember_user_login">Recordar usuario  </string>
+
+    //Fuel
+    <string name="date_fuel">Fecha</string>
+    <string name="week_fuel">Semana</string>
+    <string name="codigo_activo_fijo_fuel">Activo Fijo</string>
+    <string name="nombre_activo_fijo_fuel">Nombre Activo Fijo</string>
+    <string name="km_fuel">Odometro</string>
+    <string name="codigo_trabajador_fuel">Codigo Trabajador</string>
+    <string name="nombre_operador_fuel">Nombre operador</string>
+    <string name="fuel_selector_fuel">Selecciona un tipo de combustible -></string>
+    <string name="fuel_selected_fuel">Combustible</string>
+    <string name="fuel_selector_text">Selecciona un tipo de combustible</string>
+    <string name="liters_fuel">Litros Cargados</string>
+    <string name="field_fuel">Campo</string>
+    <string name="activity_fuel">Actividad</string>
+    <string name="price_fuel">Precio por litro</string>
+    <string name="save_fuel">Guardar</string>
+
+    //Fragment List Records
+    <string name="search_holder_fragment_list_records">Buscar por fecha</string>
+
+    //Fragment Assets
+    <string name="search_holder_fragment_assets">Busca por codigo de activo fijo</string>
+
+    //Item Entry Asset
+    <string name="code_asset">Codigo:</string>
+    <string name="name_asset">Nombre:</string>
+    <string name="plate_asset">Placa:</string>
+    <string name="date_asset">Fecha:</string>
+    <string name="liter_asset">Litros cargados:</string>
+    <string name="place_asset">Campo:</string>
+    <string name="zone_asset">Zona:</string>
+    <string name="activity_asset">Actividad:</string>
+
+    //Item Entry Record
+    <string name="date_item_entry_record">Fecha:</string>
+    <string name="fixed_asset_item_entry_record">Activo Fijo:</string>
+    <string name="odometer_item_entry_record">Kilometraje:</string>
+    <string name="liters_item_entry_record">Litros Cargados:</string>
+    <string name="empty_item_entry_record">Data</string>
+
+    //Detail View Record
+    <string name="record_number_detail_view">Numero de registro:</string>
+    <string name="record_date_detail_view">Fecha:</string>
+    <string name="week_number_detail_view">Semana:</string>
+    <string name="fixed_asset_code_detail_view">Codigo Activo Fijo:</string>
+    <string name="fixed_asset_name_detail_view">Nombre Activo Fijo:</string>
+    <string name="odometer_detail_view">Kilometros:</string>
+    <string name="worker_code_detail_view">Codigo Trabajador:</string>
+    <string name="worker_name_detail_view">Nombre Trabajador:</string>
+    <string name="combustible_detail_view">Combustible:</string>
+    <string name="liters_detail_view">Litros:</string>
+    <string name="precio">Precio:</string>
+    <string name="field_detail_view">Campo:</string>
+    <string name="activity_detail_view">Actividad:</string>
+    <string name="user_code_detail_view">Usuario:</string>
+    <string name="is_synced_detail_view">Sincronizado:</string>
+
+    //Detail View Asset
+    <string name="number_asset">No. Economico:</string>
+    <string name="serial_asset">No. de Serie:</string>
+    <string name="observations_asset">Observaciones:</string>
+    <string name="km_aaset">Kilometros:</string>
+
+    //Navigation Bar
+    <string name="home_nav_bar">Home</string>
+    <string name="list_of_records_nav_bar">Lista Registros</string>
+    <string name="sync_nav_bar">Sincronizacion</string>
+    <string name="about_nav_bar">Acerca de...</string>
+    <string name="assets_nav_bar">Activos Fijos</string>
+    <string name="logout_nav_bar">Salir</string>
+
+    //Sync
+    <string name="download_data_sync_fragment">Descargar catalogos</string>
+    <string name="upload_data_sync_fragment">Enviar catalogos</string>
+    <string name="download_use_sync_fragment">Descarga los datos para mantener actualizado el dispositivo</string>
+    <string name="upload_use_sync_fragment">Envia los datos hacia el sistema</string>
+
+    //About Fragment
+    <string name="developed_by_about_fragment">Desarrollado por I.T. Agroberries México</string>
+    <string name="doubts_about_fragment">¿Tienes dudas?</string>
+    <string name="contact_us_about_fragment">Contactanos</string>
+    <string name="mail1_about_fragment">aorozco@agroberries.mx</string>
+    <string name="mail2_about_fragment">programador@agroberries.mx</string>
+    <string name="version_about_fragment">Version: 2.2</string>
+    <string name="privacy_policies_about_fragment"><a href="https://agroberries.mx/agroweb/PrivacyPolicy/index.html">Politicas de privacidad</a></string>
+
+    //Empty Image
+    <string name="image">Empty Image</string>
+
+    <string name="hello_blank_fragment">Mi primer APP Kotlip</string>
+
+</resources>

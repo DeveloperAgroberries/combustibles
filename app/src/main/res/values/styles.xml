@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomDatePickerDialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimary">#7BB328</item> <!-- Color del encabezado -->
+        <item name="colorPrimaryVariant">#7BB328</item> <!-- Variante del color -->
+        <item name="colorAccent">#081165</item> <!-- Color de resaltado -->
+        <item name="android:textColorPrimary">#FFFFFF</item> <!-- Color del texto -->
+        <item name="android:background">#7BB328</item> <!-- Fondo del diálogo -->
+    </style>
+</resources>

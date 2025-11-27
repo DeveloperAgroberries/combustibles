@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Orginalmente se tenia aqui un RelativeLayout
+androidx.constraintlayout.widget.ConstraintLayout -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.fuel.FuelFragment">
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:fillViewport="true"
+        android:focusableInTouchMode="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!--            <DatePicker-->
+            <!--                android:id="@+id/dpFuelRegister"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:calendarTextColor="@color/secondary"-->
+            <!--                android:calendarViewShown="false"-->
+            <!--                android:datePickerMode="calendar"-->
+            <!--                android:backgroundTint="@color/primary"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!-- Primer campo: Fecha -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilFuelRegister"
+                style="?attr/textInputFilledStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/date_fuel"
+                android:textColorHint="#000"
+                app:boxStrokeColor="@color/secondary"
+                app:hintTextColor="@color/secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tilWeek"
+                app:layout_constraintWidth_percent="0.5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFuelRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Segundo campo: Semana -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilWeek"
+                style="?attr/textInputFilledStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:hint="@string/week_fuel"
+                android:textColorHint="#000"
+                app:boxStrokeColor="@color/secondary"
+                app:hintTextColor="@color/secondary"
+                app:layout_constraintStart_toEndOf="@id/tilFuelRegister"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tilFuelRegister"
+                app:layout_constraintWidth_percent="0.5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etWeek"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Activo Fijo -->
+            <LinearLayout
+                android:id="@+id/llCodAfi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilWeek">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCodAfi"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.88"
+                    android:hint="@string/codigo_activo_fijo_fuel"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCodAfi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapCharacters"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp"
+                    android:gravity="center">
+
+                    <ImageButton
+                    android:id="@+id/btnFixedAsset"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:backgroundTint="@color/transparent"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/ic_camera_fuel"
+                    app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAfiName"
+                style="?attr/textInputFilledStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/nombre_activo_fijo_fuel"
+                android:layout_marginEnd="8dp"
+                android:textColorHint="#000"
+                android:layout_marginTop="16dp"
+                app:boxStrokeColor="@color/secondary"
+                app:hintTextColor="@color/secondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tilKm"
+                app:layout_constraintTop_toBottomOf="@id/llCodAfi"
+                app:layout_constraintWidth_percent="0.5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAfiName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilKm"
+                style="?attr/textInputFilledStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/km_fuel"
+                android:textColorHint="#000"
+                android:layout_marginTop="16dp"
+                app:boxStrokeColor="@color/secondary"
+                app:hintTextColor="@color/secondary"
+                app:layout_constraintStart_toEndOf="@id/tilAfiName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llCodAfi"
+                app:layout_constraintWidth_percent="0.5">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etKm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="9"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/llCodTra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilKm">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCodTra"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.88"
+                    android:hint="@string/codigo_trabajador_fuel"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCodTra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp">
+
+                    <ImageButton
+                        android:id="@+id/btnWorkerCode"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:backgroundTint="@color/transparent"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/ic_camera_fuel"
+                        app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNomOpe"
+                style="?attr/textInputFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/nombre_operador_fuel"
+                android:textColorHint="#000"
+                app:boxStrokeColor="@color/secondary"
+                app:hintTextColor="@color/secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llCodTra">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNomOpe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/llFuelType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilNomOpe"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFuelType"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.88"
+                    android:hint="@string/fuel_selected_fuel"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFuelType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp">
+
+                    <ImageButton
+                        android:id="@+id/btnSelectFuel"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:backgroundTint="@color/transparent"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/ic_type_gas"
+                        app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!--Listros cargados-->
+            <LinearLayout
+                android:id="@+id/lyLitros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llFuelType"
+                app:layout_constraintBottom_toTopOf="@+id/llPrecio">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilLiters"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.88"
+                    android:hint="@string/liters_fuel"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etLiters"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"
+                       />
+
+                    <!--Codigo para evitar escritura en inputs
+                         android:focusable="false"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:longClickable="false"-->
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"
+                    android:layout_marginStart="8dp"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp">
+                    <ImageButton
+                        android:id="@+id/btnLitroCargado"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:backgroundTint="@color/transparent"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/ic_camera_fuel"
+                        app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!--Precio por litro-->
+            <LinearLayout
+                android:id="@+id/llPrecio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lyLitros"
+                app:layout_constraintBottom_toTopOf="@+id/llField">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilPrecio"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.88"
+                    android:hint="@string/price_fuel"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPrecio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:maxLines="1"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llPrecio">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilField"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.88"
+                    android:hint="@string/field_fuel"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp">
+
+                    <ImageButton
+                        android:id="@+id/btnSelectField"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:backgroundTint="@color/transparent"
+                        android:contentDescription="@string/image"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_field_fuel"
+                        app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llField">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilActivity"
+                    style="?attr/textInputFilledStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.88"
+                    android:hint="@string/activity_fuel"
+                    android:textColorHint="#000"
+                    app:boxStrokeColor="@color/secondary"
+                    app:hintTextColor="@color/secondary">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12"
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp">
+
+                    <ImageButton
+                        android:id="@+id/btnSelectActivity"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:backgroundTint="@color/transparent"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/ic_activity_list"
+                        app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+
+
+            <!--com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/save_fuel"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="@color/secondary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llActivity"
+                app:strokeColor="@color/secondary" /-->
+
+            <TextView
+                android:id="@+id/tvPhotoUploadTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fotografías del Suministro"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llActivity" android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:id="@+id/llCameraButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvPhotoUploadTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <Button
+                    android:id="@+id/btnFixedAssetPhoto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tomar Foto del Activo"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/primary"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnPumpPhoto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tomar Foto Bomba"
+                    android:layout_marginStart="4dp"
+                    android:backgroundTint="@color/primary"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/ivPhotoPreview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:background="#DDDDDD"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llCameraButtons"
+                android:layout_marginTop="16dp"
+                android:contentDescription="Vista previa de la foto seleccionada"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/llSubfolderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivPhotoPreview"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSubfolderName"
+                style="?attr/textInputFilledStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0.88"
+                android:hint="Escanea QR de Activo Fijo"
+                app:boxStrokeColor="@color/secondary"
+                app:hintTextColor="@color/secondary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSubfolderName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:enabled="false"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.12" app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="22dp"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/btnScanSubfolder"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:backgroundTint="@color/transparent"
+                        android:contentDescription="Escanear Código QR"
+                        android:src="@drawable/ic_camera_fuel"
+                        app:tint="@color/white" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnUploadPhoto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Subir Foto"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FF9800"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llSubfolderName" />
+
+            <ProgressBar
+                android:id="@+id/photoProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnUploadPhoto"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#097600"
+                android:padding="12dp"
+                android:text="@string/save_fuel"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/photoProgressBar"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_alpha"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/pbView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/secondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
