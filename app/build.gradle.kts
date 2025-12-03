@@ -15,18 +15,23 @@ android {
         applicationId = "com.agroberriesmx.combustiblesagroberries"
         minSdk = 21
         targetSdk = 35
-        versionCode = 8 // ultima actualizacion de version: RICARDO DIMAS 29/07/2025
+        versionCode = 10 // ultima actualizacion de version: RICARDO DIMAS 01/12/2025
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters += listOf("arm64-v8a")
+            //abiFilters "arm64-v8a", "armeabi-v7a"
+        }
     }
 
     buildTypes {
         debug {
             isDebuggable = true
             resValue("string", "AgroberriesMX", "[DEBUG]Combustibles Agroberries MX")
-            //buildConfigField("String", "BASE_URL", "\"http://54.165.41.23:5053/api/CombustiblesApp/\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.1.60:5011/api/CombustiblesApp/\"")
+            buildConfigField("String", "BASE_URL", "\"http://54.165.41.23:5053/api/CombustiblesApp/\"")
+            //buildConfigField("String", "BASE_URL", "\"http://192.168.1.60:5011/api/CombustiblesApp/\"")
         }
 
         release {
@@ -38,8 +43,8 @@ android {
             )
 
             resValue("string", "AgroberriesMX", "Combustibles Agroberries MX")
-            //buildConfigField("String", "BASE_URL", "\"http://54.165.41.23:5053/api/CombustiblesApp/\"")
-            buildConfigField("String", "BASE_URL", "\"http://192.168.1.60:5011/api/CombustiblesApp/\"")
+            buildConfigField("String", "BASE_URL", "\"http://54.165.41.23:5053/api/CombustiblesApp/\"")
+            //buildConfigField("String", "BASE_URL", "\"http://192.168.1.60:5011/api/CombustiblesApp/\"")
         }
     }
     testBuildType = "debug" // 👈 añade esto aquí
@@ -86,7 +91,7 @@ dependencies {
     implementation(libs.zxing)
 
     // ML Kit Text Recognition
-    implementation("com.google.mlkit:text-recognition:16.0.0")
+    implementation("com.google.mlkit:text-recognition:16.1.0")
 
     // CameraX core library
     implementation("androidx.camera:camera-camera2:1.3.1")

@@ -37,6 +37,7 @@ import androidx.activity.result.ActivityResultLauncher
 import android.graphics.Bitmap // Para Bitmap
 import android.provider.MediaStore // Para MediaStore.ACTION_IMAGE_CAPTURE
 import android.Manifest // Para Manifest.permission.CAMERA
+import android.app.AlertDialog
 import android.content.pm.PackageManager // Para PackageManager
 import android.graphics.BitmapFactory
 import androidx.core.content.ContextCompat // Para ContextCompat.checkSelfPermission
@@ -506,9 +507,9 @@ class FuelFragment : Fragment() {
         binding.btnScanSubfolder.setOnClickListener { startScannerForFolder() }
 
         // Botón para activar el OCR de Litros
-        binding.btnLitroCargado.setOnClickListener {
+        /*binding.btnLitroCargado.setOnClickListener {
             checkCameraPermissionAndDispatchIntent(CameraAction.LITROS)
-        }
+        }*/
 
         // Botón para tomar la foto del ACTIVO FIJO
         binding.btnFixedAssetPhoto.setOnClickListener {
@@ -833,6 +834,12 @@ class FuelFragment : Fragment() {
                                 pumpPhotoUploaded = true
                                 showToast("Foto de Bomba subida exitosamente!")
                                 Log.d("UploadPhoto", "Bomba subida exitosamente con mensaje: ${uploadResponse.message}")
+                                // 🛑 SOLUCIÓN: Deshabilitar el botón inmediatamente después del éxito
+                                binding.btnUploadPhoto.isEnabled = false
+
+                                // 🧹 Limpiar el estado de la foto pendiente para evitar re-subidas
+                                lastCapturedBitmap = null
+                                currentPhotoTypeToUpload = null
                             }
                         }
                         // Actualiza el contador de fotos subidas
@@ -1010,7 +1017,7 @@ class FuelFragment : Fragment() {
                 lastCapturedBitmap = null
                 currentPhotoTypeToUpload = null
                 binding.ivPhotoPreview.setImageResource(R.drawable.ic_camera_fuel)
-                binding.btnUploadPhoto.visibility = View.GONE
+                //binding.btnUploadPhoto.visibility = View.GONE
                 binding.photoProgressBar.visibility = View.GONE
                 binding.etSubfolderName.text?.clear()
                 binding.llSubfolderName.isEnabled = false // Deshabilitar el campo de subcarpeta al resetear
@@ -1045,6 +1052,13 @@ class FuelFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val scannedData = result.data?.getStringExtra("SCAN_RESULT") ?: ""
+
+                // 🛑 CAMBIO CLAVE 🛑
+                // 1. Limpiar campos del trabajador en la UI.
+                binding.etCodTra.text!!.clear()
+                binding.etNomOpe.text!!.clear()
+                isWorkerScanned = false
+
                 binding.etCodAfi.setText(scannedData)
             }
         }
@@ -1077,7 +1091,7 @@ class FuelFragment : Fragment() {
     private fun fixedAssetsState(state: FuelState.SuccessFixedAsset) {
         val fixedAsset = state.successFixedAsset
         binding.etAfiName.setText(fixedAsset.nombreAfi)
-        //binding.etAfiName.setText(fixedAsset.vNombreAfi)
+        //binding.tilSubfolderName.setText(fixedAsset.vNombreAfi)
     }
 
     private fun workerState(state: FuelState.SuccessWorker) {
@@ -1127,7 +1141,7 @@ class FuelFragment : Fragment() {
     }
 
     @SuppressLint("ResourceType")
-    private fun showFuelSelector() {
+    /*private fun showFuelSelector() {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
         val view =
             LayoutInflater.from(requireContext()).inflate(R.drawable.bottom_sheet_layout, null)
@@ -1152,10 +1166,25 @@ class FuelFragment : Fragment() {
 
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
+    }*/
+
+    private fun showFuelSelector() {
+        val options = fuelSelectorOptions
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle("Selecciona Tipo de Combustible")
+            .setItems(options) { _, which ->
+                val selectedFuel = options[which]
+                binding.etFuelType.setText(selectedFuel)
+                fuelValue = fuelSelectorMap[selectedFuel] ?: ""
+                checkFormCompletion()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+        builder.create().show()
     }
 
     @SuppressLint("ResourceType", "InflateParams")
-    private fun showFieldSelector() {
+    /*private fun showFieldSelector() {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
         val view =
             LayoutInflater.from(requireContext()).inflate(R.drawable.bottom_sheet_layout, null)
@@ -1185,10 +1214,29 @@ class FuelFragment : Fragment() {
 
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
+    }*/
+    private fun showFieldSelector() {
+        if (!::fieldSelectorOptions.isInitialized || fieldSelectorOptions.isEmpty()) {
+            showToast("No hay ranchos (campos) disponibles. Intenta sincronizar datos.")
+            return
+        }
+        val options = fieldSelectorOptions.toTypedArray()
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle("Selecciona el Rancho (Campo)")
+            .setItems(options) { _, which ->
+                val selectedField = options[which]
+                binding.etField.setText(selectedField)
+                fieldValue = fieldSelectorMap[selectedField] ?: ""
+                fieldZoneValue = fieldZoneSelectorMap[selectedField] ?: ""
+                checkFormCompletion()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+        builder.create().show()
     }
 
     @SuppressLint("ResourceType", "InflateParams")
-    private fun showActivitySelector() {
+    /*private fun showActivitySelector() {
         val bottomSheetDialog = BottomSheetDialog(requireContext())
         val view =
             LayoutInflater.from(requireContext()).inflate(R.drawable.bottom_sheet_layout, null)
@@ -1217,6 +1265,20 @@ class FuelFragment : Fragment() {
 
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
+    }*/
+    private fun showActivitySelector() {
+        val options = activitySelectorOptions
+        val builder = AlertDialog.Builder(requireContext())
+
+        builder.setTitle("Selecciona la Actividad")
+            .setItems(options) { _, which ->
+                val selectedActivity = options[which]
+                binding.etActivity.setText(selectedActivity)
+                activityValue = activitySelectorMap[selectedActivity] ?: ""
+                checkFormCompletion()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ -> dialog.dismiss() }
+        builder.create().show()
     }
 
     private fun showToast(message: String) {
