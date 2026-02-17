@@ -49,11 +49,11 @@ android {
     }
     testBuildType = "debug" // 👈 añade esto aquí
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
 
     buildFeatures{
@@ -91,7 +91,8 @@ dependencies {
     implementation(libs.zxing)
 
     // ML Kit Text Recognition
-    implementation("com.google.mlkit:text-recognition:16.1.0")
+    //implementation("com.google.mlkit:text-recognition:16.1.0")
+    implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.1")
 
     // CameraX core library
     implementation("androidx.camera:camera-camera2:1.3.1")
