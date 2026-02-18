@@ -24,7 +24,8 @@ class AboutFragment : Fragment() {
 
         Glide.with(this)
             .asGif()
-            .load(R.drawable.about_background)
+            //.load(R.drawable.about_background)
+            .load(R.raw.agrobackground) // Cambiado a R.raw
             .into(binding.gifBackgroundAbout)
 
         initUI()

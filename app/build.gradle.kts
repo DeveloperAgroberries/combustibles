@@ -13,9 +13,9 @@ android {
 
     defaultConfig {
         applicationId = "com.agroberriesmx.combustiblesagroberries"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 35
-        versionCode = 10 // ultima actualizacion de version: RICARDO DIMAS 01/12/2025
+        versionCode = 11 // ultima actualizacion de version: RICARDO DIMAS 01/12/2025
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -60,6 +60,12 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    packaging {
+        jniLibs {
+            // Esto es vital para que la app no falle en teléfonos nuevos del 2026
+            useLegacyPackaging = false
+        }
+    }
 }
 
 dependencies {
@@ -95,10 +101,10 @@ dependencies {
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.1")
 
     // CameraX core library
-    implementation("androidx.camera:camera-camera2:1.3.1")
-    implementation("androidx.camera:camera-lifecycle:1.3.1")
-    implementation("androidx.camera:camera-view:1.3.1")
-    implementation("androidx.camera:camera-extensions:1.3.1")
+    implementation("androidx.camera:camera-camera2:1.5.3")
+    implementation("androidx.camera:camera-lifecycle:1.5.3")
+    implementation("androidx.camera:camera-view:1.5.3")
+    implementation("androidx.camera:camera-extensions:1.5.3")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

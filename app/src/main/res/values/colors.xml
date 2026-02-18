@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="primary">#7BB328</color>
+    <color name="primary">#7c30b8</color>
     <color name="secondary">#081165</color>
     <color name="gray">#D3D3D3</color>
     <color name="transparent">#00FFFFFF</color>
@@ -15,14 +15,14 @@
     <color name="link_color">#7EAAFF</color>
     
     //Menu Item Selector
-    <color name="colorSelected">#667BB328</color>
+    <color name="colorSelected">#d19ff9</color>
 
     //Colores para subir fotos
-    <color name="fuel_button_green">#4CAF50</color>
+    <color name="fuel_button_green">#7c30b8</color>
     <color name="fuel_button_red">#F44336</color>
     <color name="fuel_button_text_color">#FFFFFF</color>
 
-    <color name="photo_button_green">#4CAF50</color>
+    <color name="photo_button_green">#7c30b8</color>
     <color name="photo_button_red">#F44336</color>
     <color name="photo_button_text_color">#FFFFFF</color>
 

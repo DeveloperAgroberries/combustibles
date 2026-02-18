@@ -494,6 +494,19 @@ class FuelFragment : Fragment() {
     @SuppressLint("DefaultLocale")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initListeners() {
+        // --- NUEVA LÓGICA DEL CHECKBOX ---
+        binding.cbEnablePhotos.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                binding.containerPhotoSection.visibility = View.VISIBLE
+            } else {
+                binding.containerPhotoSection.visibility = View.GONE
+                // Opcional: Si quieres limpiar el estado al desmarcar
+                resetPhotoStatus()
+            }
+            checkFormCompletion() // Para validar si el botón de guardar debe habilitarse
+        }
+        // ---------------------------------
+
         binding.btnSelectFuel.setOnClickListener {
             showFuelSelector()
             // No es necesario llamar checkFormCompletion() aquí si ya lo haces en showFuelSelector() al seleccionar el valor.
@@ -920,13 +933,31 @@ class FuelFragment : Fragment() {
         }
 
         // **VALIDACIÓN DE FOTOS REQUERIDAS**
-        if (!fixedAssetPhotoUploaded || !pumpPhotoUploaded) {
+        /*if (!fixedAssetPhotoUploaded || !pumpPhotoUploaded) {
             val missingPhotos = mutableListOf<String>()
             if (!fixedAssetPhotoUploaded) missingPhotos.add("Foto de Activo Fijo")
             if (!pumpPhotoUploaded) missingPhotos.add("Foto de Bomba")
 
             showToast("Toma las siguientes fotos: ${missingPhotos.joinToString(", ")}.")
             return false // Si faltan fotos, detenemos la validación.
+        }*/
+        // 3. VALIDACIÓN DE FOTOS CONDICIONAL
+        // Solo validamos las fotos si el CheckBox está marcado
+        if (binding.cbEnablePhotos.isChecked) {
+            if (!fixedAssetPhotoUploaded || !pumpPhotoUploaded) {
+                val missingPhotos = mutableListOf<String>()
+                if (!fixedAssetPhotoUploaded) missingPhotos.add("Foto de Activo Fijo")
+                if (!pumpPhotoUploaded) missingPhotos.add("Foto de Bomba")
+
+                showToast("Has indicado que subirás fotos. Por favor toma: ${missingPhotos.joinToString(", ")}.")
+                return false // Detiene el guardado porque activó el check pero no tomó las fotos
+            }
+
+            // También podrías validar que el nombre de la subcarpeta no esté vacío si el check está activo
+            if (binding.etSubfolderName.text.toString().trim().isEmpty()) {
+                showToast("Por favor, ingresa o escanea el código para la carpeta de fotos.")
+                return false
+            }
         }
 
         // Si todas las validaciones anteriores pasaron, el formulario es válido.
@@ -1266,6 +1297,26 @@ class FuelFragment : Fragment() {
         bottomSheetDialog.setContentView(view)
         bottomSheetDialog.show()
     }*/
+    private fun resetPhotoStatus() {
+        // 1. Resetear las variables lógicas
+        fixedAssetPhotoUploaded = false
+        pumpPhotoUploaded = false
+        photoCounter = 0
+        lastCapturedBitmap = null
+        currentPhotoTypeToUpload = null
+
+        // 2. Limpiar la interfaz visual
+        binding.ivPhotoPreview.setImageResource(R.drawable.ic_camera_fuel)
+        binding.ivPhotoPreview.alpha = 0.5f
+        binding.etSubfolderName.text?.clear()
+
+        // 3. Actualizar el texto informativo
+        binding.tvPhotoUploadTitle.text = "Fotos requeridas: 2"
+
+        // 4. Resetear los colores de los botones (volver a ponerlos en verde/gris)
+        updatePhotoButtonsColors()
+    }
+
     private fun showActivitySelector() {
         val options = activitySelectorOptions
         val builder = AlertDialog.Builder(requireContext())
