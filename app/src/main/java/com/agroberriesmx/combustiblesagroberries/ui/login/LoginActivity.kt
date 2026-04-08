@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
 
         Glide.with(this)
             .asGif()
-            .load(R.drawable.login_background) // También puedes usar una URL: "https://ejemplo.com/fondo.gif"
+            .load(R.drawable.login_agroberries) // También puedes usar una URL: "https://ejemplo.com/fondo.gif"
             .into(binding.gifBackground)
     }
 
