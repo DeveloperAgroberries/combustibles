@@ -15,7 +15,7 @@ android {
         applicationId = "com.agroberriesmx.combustiblesagroberries"
         minSdk = 23
         targetSdk = 35
-        versionCode = 12 // ultima actualizacion de version: RICARDO DIMAS 01/04/2026
+        versionCode = 13 // ultima actualizacion de version: RICARDO DIMAS 01/04/2026
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -31,7 +31,7 @@ android {
             isDebuggable = true
             resValue("string", "AgroberriesMX", "[DEBUG]Combustibles Agroberries MX")
             buildConfigField("String", "BASE_URL", "\"http://54.165.41.23:5053/api/CombustiblesApp/\"")
-            //buildConfigField("String", "BASE_URL", "\"http://192.168.1.60:5011/api/CombustiblesApp/\"")
+            //buildConfigField("String", "BASE_URL", "\"http://192.168.50.120:5011/api/CombustiblesApp/\"")
         }
 
         release {
@@ -44,7 +44,7 @@ android {
 
             resValue("string", "AgroberriesMX", "Combustibles Agroberries MX")
             buildConfigField("String", "BASE_URL", "\"http://54.165.41.23:5053/api/CombustiblesApp/\"")
-            //buildConfigField("String", "BASE_URL", "\"http://192.168.1.60:5011/api/CombustiblesApp/\"")
+            //buildConfigField("String", "BASE_URL", "\"http://192.168.50.120:5011/api/CombustiblesApp/\"")
         }
     }
     testBuildType = "debug" // 👈 añade esto aquí

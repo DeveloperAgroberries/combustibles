@@ -341,6 +341,7 @@ androidx.constraintlayout.widget.ConstraintLayout -->
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
+                        android:maxLength="5"
                         android:maxLines="1"
                        />
 

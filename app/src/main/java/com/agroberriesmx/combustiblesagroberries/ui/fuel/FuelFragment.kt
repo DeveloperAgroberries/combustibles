@@ -664,6 +664,31 @@ class FuelFragment : Fragment() {
                 val zone = fieldZoneValue
                 val nPrecioCom = binding.etPrecio.text.toString()
 
+                // --- NUEVA VALIDACIÓN DE LITROS ---
+                val litersDouble = liters.toDoubleOrNull()
+                if (litersDouble == null || litersDouble < 0.5 || litersDouble > 99.99) {
+                    // Pintamos el error visual en el TextInputEditText usando su TextInputLayout
+                    binding.tilLiters.error = "Los litros deben estar entre 0.5 y 99.99"
+                    showToast("Cantidad de litros no permitida (0.5 a 99.99).")
+                    binding.etLiters.requestFocus() // Enfoca el campo para que el usuario lo corrija
+                    return@setOnClickListener // Detiene el flujo de guardado aquí mismo
+                } else {
+                    binding.tilLiters.error = null // Si pasa la validación, quitamos cualquier error previo
+                }
+                // --- FIN DE LA VALIDACIÓN DE LITROS ---
+
+                // --- NUEVA VALIDACIÓN DE PRECIOS ---
+                val precioDouble = nPrecioCom.toDoubleOrNull()
+                if (precioDouble == null || precioDouble < 0.5 || precioDouble > 99.99) {
+                    // Pintamos el error visual en el TextInputEditText usando su TextInputLayout
+                    binding.tilPrecio.error = "El precio debe estar entre 0.5 y 99.99"
+                    showToast("Cantidad de precio no permitida (0.5 a 99.99).")
+                    binding.etPrecio.requestFocus() // Enfoca el campo para que el usuario lo corrija
+                    return@setOnClickListener // Detiene el flujo de guardado aquí mismo
+                } else {
+                    binding.tilPrecio.error = null // Si pasa la validación, quitamos cualquier error previo
+                }
+                // --- FIN DE LA VALIDACIÓN DE PRECIOS ---
 
                 if (
                     formattedDate.isEmpty() ||
@@ -1128,7 +1153,8 @@ class FuelFragment : Fragment() {
     private fun workerState(state: FuelState.SuccessWorker) {
         val worker = state.successWorker
         val fullName =
-            worker.vNombreTra + " " + worker.vApellidopatTra + " " + worker.vApellidomatTra
+            //worker.vNombreTra + " " + worker.vApellidopatTra + " " + worker.vApellidomatTra
+            worker.vNombreUsu
         binding.etNomOpe.setText(fullName)
     }
 

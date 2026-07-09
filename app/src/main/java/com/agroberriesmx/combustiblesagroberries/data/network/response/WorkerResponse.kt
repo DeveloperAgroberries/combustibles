@@ -8,17 +8,19 @@ data class WorkerApiResponse(
 )
 
 data class WorkerResponse(
-    @SerializedName("cCodigoTra") val cCodigoTra: String,
-    @SerializedName("vNombreTra") val vNombreTra: String,
-    @SerializedName("vApellidopatTra") val vApellidopatTra: String,
-    @SerializedName("vApellidomatTra") val vApellidomatTra: String
+    @SerializedName("cCodigoUsu") val cCodigoUsu: String,
+    @SerializedName("vNombreUsu") val vNombreUsu: String,
+    //@SerializedName("vNombreTra") val vNombreTra: String,
+    //@SerializedName("vApellidopatTra") val vApellidopatTra: String,
+    //@SerializedName("vApellidomatTra") val vApellidomatTra: String
 ) {
     fun toDomain(): WorkerModel{
         return WorkerModel(
-            cCodigoTra = cCodigoTra,
-            vNombreTra = vNombreTra,
-            vApellidopatTra = vApellidopatTra,
-            vApellidomatTra = vApellidomatTra
+            cCodigoUsu = cCodigoUsu,
+            vNombreUsu = vNombreUsu
+            //vNombreTra = vNombreTra,
+            //vApellidopatTra = vApellidopatTra,
+            //vApellidomatTra = vApellidomatTra
         )
     }
 }
